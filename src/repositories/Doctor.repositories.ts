@@ -11,12 +11,13 @@ export class MainDoctor {
         return new DoctorSchema(doctor).save()
     }
     updateDoctor(id:string ,doctor: IDOCTOR){
-        console.log({id,doctor})
+        
         return DoctorSchema.findByIdAndUpdate(id,doctor,{
             new:true
         })
     }
     delDoctor(_id:string){
+        console.log(_id)
         return DoctorSchema.findByIdAndDelete(_id)
     }
     getalldoctor(){

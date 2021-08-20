@@ -20,13 +20,13 @@ export class DoctorRoutes {
     routes(){
         this.router.post('/getdoctor', extractJWT,  async(req:any,res,next)=>{
             try {
-                console.log('route after immediate try')
+               
                
  
                
                
                const doctor:SaveUpdateResDoctor = await new DoctorController().getdoctor(<any>req.user.id)
-               console.log('after doctor constroller')
+            
                res.send(doctor)
             } catch (error) {
                 next(error)
@@ -34,9 +34,9 @@ export class DoctorRoutes {
         })
         this.router.get('/getalldoctor', apikeyauth ,async(req,res,next)=>{
             try {
-                console.log('getalldoct')
+              
                 const alldoc: SaveUpdateResDoctor[]= await new DoctorController().getallDoctor()
-                console.log(alldoc)
+             
                 res.json({
                     result: alldoc.length,
                     alldoc
@@ -64,7 +64,7 @@ export class DoctorRoutes {
         this.router.put('/updatedoctor',extractJWT,async(req:any,res,next)=>{
             try {
                 const doctor:UpdateReqDoctor= req.body
-                console.log({doctor, req})
+             
                 const updatedoctor:SaveUpdateResDoctor = await new DoctorController().updatedoctor(<any>req.user.id,doctor)
                 res.json({
                     message:"doctor details updated",

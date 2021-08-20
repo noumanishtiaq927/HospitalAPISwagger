@@ -36,7 +36,8 @@ export class DoctorController {
     @Get('/getalldoctor')
     async getallDoctor(): Promise<SaveUpdateResDoctor[]>{
   
-        const doctor: IDOCTOR[] = await new MainDoctor().getalldoctor();
+        const doctor: IDOCTOR[] = await new MainDoctor().getalldoctor()
+    
         return <SaveUpdateResDoctor[]>doctor
     }
 
@@ -50,7 +51,7 @@ export class DoctorController {
     @Put("/updatedoctor")
     @Security("jwt")
     async updatedoctor(@Request() request:string, @Body() updatereq:UpdateReqDoctor ) : Promise<SaveUpdateResDoctor>{
-        console.log({updatereq, request})
+   
         const updatedoctor:any= await new MainDoctor().updateDoctor(request,<any> updatereq)
         if(updatedoctor === null) throw new CustomeError(404, 'not supported method')
         return <SaveUpdateResDoctor>updatedoctor;
